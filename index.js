@@ -121,6 +121,10 @@ io.on('connection', (socket) => {
     console.log('A user connected');
 
     socket.broadcast.emit('message', 'A USER has joined');
+    socket.on('new-user', name => {
+      users[socket.id] = name
+      socket.broadcast.emit('user-connected', name)
+    })
   
     socket.on('chat message', (msg) => {
       
