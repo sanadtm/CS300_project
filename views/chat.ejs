@@ -16,7 +16,7 @@
     </style>
   </head>
   <body>
-      
+   
 <h1><center>Hi <%= name %> , Welcome to your Chat ROOM</center></h1>
     <ul id="messages"></ul>
     <form id="form" action="">
@@ -25,8 +25,9 @@
     
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      
         var socket = io();
-        
+        const name = prompt('HEY!! What is your NICK name?')
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
         var input = document.getElementById('input');
@@ -35,7 +36,7 @@
           e.preventDefault();
           if (input.value) {
             
-            socket.emit('chat message', input.value);
+            socket.emit('chat message',`${name}: ${input.value}`);
             input.value = '';
           }
         });

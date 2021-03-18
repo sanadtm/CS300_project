@@ -8,7 +8,7 @@ const flash = require('express-flash')
 
 
 
-//const users =[]
+const user ='sanad';
 app.set('view-engine','ejs')
 //app.use(router);
 require("dotenv").config();
@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false})); //Body Parser
 
 // GET REQUEST
 app.get('/', (req, res) => {
-    res.render('register.ejs', {name :'Sanad'});
+    res.render('register.ejs');
   });
   app.get('/login', (req, res) => {
     res.render('login.ejs');
@@ -81,7 +81,11 @@ const N_user= require("./model/add_users");
       password,
       doesUserExits.password
     );
-
+      try {
+          user =doesUserExits.name;
+      }catch{
+       
+      }
     if (!doesPasswordMatch) {
       res.send("invalid useranme or password");
       return;
@@ -116,19 +120,15 @@ const N_user= require("./model/add_users");
 const io = require('socket.io')(server);
 require("./model/Message")
 const Message = mongoose.model("Message");
-let numUsers = 0;
+
 io.on('connection', (socket) => {
     console.log('A user connected');
-
+    console.log(user)
     socket.broadcast.emit('message', 'A USER has joined');
-    socket.on('new-user', name => {
-      users[socket.id] = name
-      socket.broadcast.emit('user-connected', name)
-    })
   
     socket.on('chat message', (msg) => {
       
-        io.emit('chat message', msg);
+        io.emit('chat message', msg,user);
 
         const newMessage = new Message({
           message:msg
@@ -138,8 +138,11 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
+    console.log(user);
     io.emit('message', 'A USER has LEFT!!');
     });
   });
+
+  
 
 

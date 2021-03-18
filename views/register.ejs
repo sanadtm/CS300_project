@@ -1,17 +1,81 @@
-<h1> REGISTER</h1>
+<title>Register Form</title>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:bordor-box;
+    }
+    body{
+        min-height: 100vh;
+        background: rgb(165, 231, 88);
+        display:flex;
+        font-family:sans-serif;
+    }
+    .container{
+            margin:auto;
+            width: 500px;
+            max-width:90%;
+    }
+    .container form{
+            width:100%;
+            height:40%;
+            padding: 20px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 8px 16px rgba(0,0,0,.3);
+
+    }
+    .container form h1{
+        text-align: center;
+        margin-bottom:24px;
+        color:#222;
+    }
+    .container form .form-control{
+            width:100%;
+            height: 40px;
+            background:white;
+            border-radius: 4px;
+            border:1px solid silver;
+            margin: 10px 0 18px 0;
+            padding:0 10px;
+
+    }
+    .container form .button{
+        margin-left:50%;
+        transform:translatex(-50%);
+        width:120px;
+        height:34px;
+        border:none;
+        outline:none;
+        background: green;
+        cursor:pointer;
+        font-size:16px;
+        text-transform:uppercase;
+        color:white;
+        border-radius:4px;
+        transition: .3s;
+    }
+    .container form .button:hover{
+        opacity: .7;
+    }
+</style>
+<link rel = "stylesheet" href = "register.css">
+<div class = "container">
 <form action = "/register" method = "POST">
-<div>
+    <h1> REGISTER or Click Login</h1>
+    <div class = "form-group">
     <label for="name"> NAME </label>
-    <input type = "text" id ="name" name="name" required>
+    <input type = "text" id ="name" name="name" class="form-control" required>
 </div>
-<div>
+<div class = "form-group">
     <label for="email"> Email </label>
-    <input type = "email" id ="email" name="email" required>
+    <input type = "email" id ="email" name="email" class="form-control" required>
 </div>
-<div>
+<div class = "form-group">
     <label for="password"> Password </label>
-    <input type = "password" id ="password" name="password" required>
+    <input type = "password" id ="password" name="password" class="form-control" required>
 </div>
-<button type ="submit">Register</button> 
+<button type ="submit" class="button">Register</button> 
 </form>
 <a href="/login">Login</a>
+</div>
